@@ -80,11 +80,29 @@ export const fallbackParser = (text: string): MatrixSchema => {
 
   if (isFrontend) result.title = "Frontend Developer";
 
-  const isBackend = ["backend", "back-end", "back end"].some((back) => {
-    lowerText.includes(back);
-  });
+  const isBackend = ["backend", "back-end", "back end"].some((back) =>
+    lowerText.includes(back),
+  );
 
   if (isBackend) result.title = "Backend Developer";
+
+  const isDevOPS = ["devops", "dev ops"].some((dev) => lowerText.includes(dev));
+
+  if (isDevOPS) {
+    result.title = "DevOPS";
+  }
+
+  const isWeb3 = [
+    "web3",
+    "solidity",
+    "evm",
+    "blockchain",
+    "smart contract",
+  ].some((web) => lowerText.includes(web));
+
+  if (isWeb3) {
+    result.title = "Web3 developer";
+  }
 
   if (lowerText.includes("lead") || lowerText.includes("principal")) {
     result.seniority = "lead";
