@@ -1,6 +1,6 @@
 import z from "zod";
 
-const Schema = z.object({
+export const Schema = z.object({
   title: z.string(),
   seniority: z.enum(["junior", "mid", "senior", "lead", "unknown"]),
   skills: z.object({
@@ -14,11 +14,11 @@ const Schema = z.object({
   niceToHave: z.array(z.string()),
   salary: z
     .object({
-      currency: z.enum(["USD", "EUR", "PLN", "GBP"]).optional(),
-      min: z.number().optional(),
-      max: z.number().optional(),
+      currency: z.enum(["USD", "EUR", "PLN", "GBP"]).nullable(),
+      min: z.number().nullable(),
+      max: z.number().nullable(),
     })
-    .optional(),
+    .nullable(),
   summary: z.string(),
 });
 
