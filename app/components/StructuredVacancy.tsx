@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { MatrixSchema } from "../src/lib/schema";
-import { Check, X } from "lucide-react";
+import { Check, Dot, X } from "lucide-react";
 
 interface IProps {
   data: MatrixSchema | null;
@@ -8,14 +8,6 @@ interface IProps {
 
 const StructuredVacancy = ({ data }: IProps) => {
   const [showJSON, setShowJSON] = useState(false);
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = () => {
-    const jsonString = JSON.stringify(data, null, 2);
-    navigator.clipboard.writeText(jsonString);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
 
   return (
     <section className="space-y-6 animate-in fade-in duration-500">
@@ -57,9 +49,12 @@ const StructuredVacancy = ({ data }: IProps) => {
               {data?.mustHave.map((item, i) => (
                 <li
                   key={i}
-                  className="text-sm text-slate-600 flex items-start gap-2"
+                  className="text-sm text-slate-600 flex items-center gap-2"
                 >
-                  <span className="text-red-400 mt-1">•</span> {item}
+                  <span className="text-red-400 mt-1 flex">
+                    <Dot />
+                  </span>
+                  {item}
                 </li>
               ))}
             </ul>
@@ -118,7 +113,5 @@ const StructuredVacancy = ({ data }: IProps) => {
     </section>
   );
 };
-
-/*   */
 
 export default StructuredVacancy;

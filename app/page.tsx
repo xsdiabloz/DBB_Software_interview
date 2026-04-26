@@ -5,6 +5,7 @@ import TextArea from "./components/TextArea";
 import StructuredVacancy from "./components/StructuredVacancy";
 import { MatrixSchema } from "./src/lib/schema";
 import { analyzeVacancy } from "./actions/action";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function Home() {
   const [value, setValue] = useState("");
@@ -20,7 +21,9 @@ export default function Home() {
     try {
       const data = await analyzeVacancy(value);
       setResult(data);
+      toast.success("Vacancy was structured!");
     } catch (error) {
+      toast.error("Cannot structured vacancy, check console...");
       console.error("Analysis failed", error);
     } finally {
       setIsLoading(false);
@@ -65,6 +68,7 @@ export default function Home() {
           </section>
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 }

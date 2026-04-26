@@ -28,6 +28,7 @@ export const fallbackParser = (text: string): MatrixSchema => {
     "sql",
     "c#",
     ".net",
+    "mongodb",
   ];
   const frontendBackground = [
     "react",
@@ -128,10 +129,14 @@ export const fallbackParser = (text: string): MatrixSchema => {
   mapSkills(web3Background, result.skills.web3);
   mapSkills(otherSkills, result.skills.other);
 
-  result.mustHave = [...result.skills.frontend, ...result.skills.backend].slice(
-    0,
-    3,
-  );
+  const getTopSkills = (
+    skills: Record<string, string[]>,
+    limit: number = 3,
+  ) => {
+    return Object.values(skills).flat().slice(0, limit);
+  };
+
+  result.mustHave = getTopSkills(result.skills, 4);
 
   result.niceToHave = result.skills.other.slice(0, 3);
 

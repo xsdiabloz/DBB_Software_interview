@@ -21,7 +21,7 @@ const TextArea = ({ value, setValue, isLoading }: IProps) => {
         placeholder="copy and paste vacancy here..."
       ></textarea>
       <button
-        disabled={isLoading || !value}
+        disabled={isLoading || !value.trim()}
         className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-colors shadow-lg active:scale-95 cursor-pointer shadow-blue-200"
       >
         {isLoading ? "Analyzing..." : "Analyze"}
